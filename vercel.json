@@ -2,12 +2,13 @@
   "version": 2,
   "builds": [
     {
-      "src": "Quberail/server/server.js",
-      "use": "@vercel/node"
+      "src": "Quberail/client/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
     },
     {
-      "src": "Quberail/client/package.json",
-      "use": "@vercel/static-build"
+      "src": "Quberail/server/server.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
