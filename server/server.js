@@ -15,20 +15,17 @@ app.use(express.json());
 mongoose
   .connect(
     process.env.MONGO_URI ||
-      "mongodb+srv://prakashgujarati:CEg2utxS6kuxRNYH@cluster0.8cjw3hn.mongodb.net/ravilakhani",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
+      "mongodb+srv://prakashgujarati:CEg2utxS6kuxRNYH@cluster0.8cjw3hn.mongodb.net/ravilakhani"
   )
   .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error(err));
+  .catch((err) => console.error("MongoDB Connection Error:", err)); // More descriptive error
 
+// Your API routes
 app.use("/api/materials", materialRoutes);
 app.use("/api/purchases", purchaseRoutes);
 app.use("/api/usages", usageRoutes);
 app.use("/api/qualities", qualityRoutes);
 app.use("/api/purposes", purposeRoutes);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// IMPORTANT: Export the app instance for Vercel
+export default app;
