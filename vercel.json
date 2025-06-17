@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "builds": [
+    {
+      "src": "Quberail/server/server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "Quberail/client/package.json",
+      "use": "@vercel/static-build",
+      "options": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/Quberail/server/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/Quberail/client/$1"
+    }
+  ]
+}
