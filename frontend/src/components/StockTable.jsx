@@ -5,7 +5,7 @@ export default function StockTable() {
   const [filter, setFilter] = useState({ material: "", size: "", quality: "" });
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/purchases/available")
+    fetch("https://quberail.vercel.app/api/purchases/available")
       .then((r) => r.json())
       .then(setRows)
       .catch(console.error);

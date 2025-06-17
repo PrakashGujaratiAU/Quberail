@@ -44,14 +44,14 @@ export default function PurchaseForm() {
   }, [data.material, materials]);
 
   const loadMaterials = async () => {
-    const res = await fetch("http://localhost:5000/api/materials");
+    const res = await fetch("https://quberail.vercel.app/api/materials");
     const mats = await res.json();
     setMaterials(mats);
     if (mats.length) setData((d) => ({ ...d, material: mats[0].name }));
   };
 
   const loadQualities = async () => {
-    const res = await fetch("http://localhost:5000/api/qualities");
+    const res = await fetch("https://quberail.vercel.app/api/qualities");
     const qs = await res.json();
     setQualities(qs);
     if (qs.length) setData((d) => ({ ...d, quality: qs[0].name }));
@@ -59,8 +59,8 @@ export default function PurchaseForm() {
 
   const loadPurchases = async () => {
     const [purchRes, availRes] = await Promise.all([
-      fetch("http://localhost:5000/api/purchases").then((r) => r.json()),
-      fetch("http://localhost:5000/api/purchases/available").then((r) =>
+      fetch("https://quberail.vercel.app/api/purchases").then((r) => r.json()),
+      fetch("https://quberail.vercel.app/api/purchases/available").then((r) =>
         r.json()
       ),
     ]);
@@ -85,7 +85,7 @@ export default function PurchaseForm() {
 
   const submit = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:5000/api/purchases", {
+    const res = await fetch("https://quberail.vercel.app/api/purchases", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -98,7 +98,7 @@ export default function PurchaseForm() {
 
   const addMaterial = async () => {
     if (!newMaterial.trim()) return;
-    await fetch("http://localhost:5000/api/materials", {
+    await fetch("https://quberail.vercel.app/api/materials", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: newMaterial, sizes: [] }),
@@ -112,7 +112,7 @@ export default function PurchaseForm() {
   const addSize = async () => {
     if (!newSize.trim()) return;
     await fetch(
-      `http://localhost:5000/api/materials/${encodeURIComponent(
+      `https://quberail.vercel.app/api/materials/${encodeURIComponent(
         data.material
       )}/size`,
       {
@@ -129,7 +129,7 @@ export default function PurchaseForm() {
 
   const addQuality = async () => {
     if (!newQuality.trim()) return;
-    await fetch("http://localhost:5000/api/qualities", {
+    await fetch("https://quberail.vercel.app/api/qualities", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: newQuality }),

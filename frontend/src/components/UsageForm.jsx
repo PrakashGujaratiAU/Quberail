@@ -20,9 +20,9 @@ export default function UsageForm() {
 
   const loadData = async () => {
     const [purch, purp, used] = await Promise.all([
-      fetch("http://localhost:5000/api/purchases").then((r) => r.json()),
-      fetch("http://localhost:5000/api/purposes").then((r) => r.json()),
-      fetch("http://localhost:5000/api/usages").then((r) => r.json()),
+      fetch("https://quberail.vercel.app/api/purchases").then((r) => r.json()),
+      fetch("https://quberail.vercel.app/api/purposes").then((r) => r.json()),
+      fetch("https://quberail.vercel.app/api/usages").then((r) => r.json()),
     ]);
     setPurchases(purch);
     setPurposes(purp);
@@ -36,7 +36,7 @@ export default function UsageForm() {
 
   const submit = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:5000/api/usages", {
+    const res = await fetch("https://quberail.vercel.app/api/usages", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -49,7 +49,7 @@ export default function UsageForm() {
 
   const addPurpose = async () => {
     if (!newPurpose.trim()) return;
-    await fetch("http://localhost:5000/api/purposes", {
+    await fetch("https://quberail.vercel.app/api/purposes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: newPurpose }),
