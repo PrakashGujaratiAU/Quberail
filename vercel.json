@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "builds": [
     {
       "src": "Quberail/server/server.js",
@@ -7,20 +7,20 @@
     },
     {
       "src": "Quberail/client/package.json",
-      "use": "@vercel/static-build",
-      "options": {
-        "distDir": "dist"
-      }
+      "use": "@vercel/static-build"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/Quberail/server/server.js"
+      "dest": "Quberail/server/server.js"
+    },
+    {
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
-      "dest": "/Quberail/client/$1"
+      "dest": "/index.html"
     }
   ]
 }
